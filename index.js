@@ -56,6 +56,26 @@ const numbers = {
   [milion]: roots.milion,
 };
 
+const isDecimal = (number) => {
+  return !Number.isInteger(number);
+};
+
+const removeTrailingZeros = (number) => {
+  const strNum = number.toString();
+  const newStrNum = strNum.replace(/(\.[0-9]*?)0+$/, "$1");
+  return parseFloat(newStrNum);
+};
+
+const getDecimalFractionName = (number) => {
+  const parsedNumber = removeTrailingZeros(number);
+  const length = parsedNumber.toString().length;
+  let name = "1";
+  for (let i = 0; i < length; i++) {
+    name += "0";
+  }
+  return "მე" + numbers[Number(name)] + "ედი";
+};
+
 const getEnding = (number) => {
   if (number === 8 || number === 9) {
     return "";
@@ -139,6 +159,7 @@ export const generateText = (number) => {
   }
 
   //4. both are complex
+
   return generateText(integerPart) + numbers[divider] + generateText(remained);
 };
 
@@ -154,8 +175,27 @@ const app = (number) => {
     return numbers[number] + getEnding(number);
   }
 
+  if (isDecimal(number)) {
+    const numberParts = number.toString().split(".");
+
+    const integerPart = Number(numberParts[0]);
+    const decimalPart = Number(numberParts[1]);
+
+    return (
+      getPolishedText(generateText(integerPart)) +
+      " მთელი " +
+      getPolishedText(generateText(decimalPart)) +
+      " " +
+      getDecimalFractionName(decimalPart)
+    );
+  }
+
   return getPolishedText(generateText(number));
 };
+
+console.log(app(12.534));
+console.log(app(12.51));
+console.log(app(12.5));
 
 console.log(app(1));
 console.log(app(9));
