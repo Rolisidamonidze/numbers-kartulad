@@ -166,6 +166,7 @@ export const generateText = (number) => {
 const getPolishedText = (text) => {
   return text
     .replace("ოროცდა", "ორმოცდა")
+    .replace("ოთხოცდა", "ოთმხოცდა")
     .replace("ასდა", "ას")
     .replace("დანოლი", roots.ending);
 };
@@ -193,24 +194,26 @@ const app = (number) => {
   return getPolishedText(generateText(number));
 };
 
-console.log(app(12.534));
-console.log(app(12.51));
-console.log(app(12.5));
+console.log(app(64.31));
 
-console.log(app(1));
-console.log(app(9));
-console.log(app(11));
-console.log(app(42));
-console.log(app(60));
-console.log(app(62));
-console.log(app(75));
-console.log(app(150));
-console.log(app(230));
-console.log(app(670));
-console.log(app(674));
-console.log(app(1203));
-console.log(app(5234));
-console.log(app(60123));
-console.log(app(610423));
-console.log(app(6100002));
-console.log(app(20001));
+// console.log(app(12.534));
+// console.log(app(12.51));
+// console.log(app(12.5));
+
+// console.log(app(1));
+// console.log(app(9));
+// console.log(app(11));
+// console.log(app(42));
+// console.log(app(60));
+// console.log(app(62));
+// console.log(app(75));
+// console.log(app(150));
+// console.log(app(230));
+// console.log(app(670));
+// console.log(app(674));
+// console.log(app(1203));
+// console.log(app(5234));
+// console.log(app(60123));
+// console.log(app(610423));
+// console.log(app(6100002));
+// console.log(app(20001));
